@@ -1,6 +1,6 @@
 /*
 * 抽离公共的webpack配置--不区分环境
-* loader:[babel-loader, style-loader, css-loader, postcss-loader, sass-loader, url-loader, html-loader]
+* loader:[babel-loader, style-loader, css-loader, postcss-loader, url-loader, html-loader]
 * plugins: [html-webpack-plugin, mini-css-extract-plugin, webpack-bundle-analyzer, happypack]
 * */
 const webpack = require('webpack');
@@ -24,9 +24,7 @@ const getCssLoader = ()=> ({
   options: {
     alias: {
       "~sprite.png": join("src/assets/spritesmith/sprite.png")
-    },
-    modules: true,
-    localIdentName: "[name]-[local]-[hash:base64:5]"
+    }
   }
 });
 const getUrlLoader = () => ({
@@ -73,21 +71,12 @@ const baseConfig = {
         exclude: /node_modules/
       },
       {
-        test: /\.(scss|css)$/,
+        test: /\.css$/,
         exclude:/node_modules/,
         use: [
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           getCssLoader(),
-          "postcss-loader",
-          "sass-loader"
-        ]
-      },
-      {
-        test: /\.css$/,
-        exclude:/src/,
-        use: [
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-          "css-loader"
+          "postcss-loader"
         ]
       },
       {
@@ -96,7 +85,7 @@ const baseConfig = {
       },
       {
         test: /\.html$/,
-        use: 'html-loader',
+        use: 'html-loader'
       },
     ]
   },

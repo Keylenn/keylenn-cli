@@ -13,6 +13,11 @@
   ],
   "plugins": [
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    [
+      "styled-jsx/babel", { //支持styled-jsx,cssinjs
+        "plugins": ["styled-jsx-plugin-postcss"]  //配置styled-jsx插件，支持css预处理器和postcss等
+      }
+    ], 
   ]
 }
