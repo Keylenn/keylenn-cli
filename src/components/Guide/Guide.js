@@ -1,7 +1,7 @@
 import React from 'react';
 import css from 'styled-jsx/css';
 
-export default function App(props) { 
+export default function Guide(props) { 
   return(
     <div className="layout">
       <h2 className="h2">Welcome to keylenn-cli!</h2>
