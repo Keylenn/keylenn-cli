@@ -17,6 +17,9 @@ const prodConfig = merge(baseConfig, {
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false,
         uglifyOptions: {
           compress: {
             warnings: false,

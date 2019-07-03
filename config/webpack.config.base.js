@@ -27,11 +27,11 @@ const getCssLoader = ()=> ({
     }
   }
 });
-const getUrlLoader = () => ({
+const getUrlLoader = (type) => ({
   loader: "url-loader",
   options: {
     limit: 8 * 1024,
-    name: "[path][name].[ext]",
+    name: `${type}/[name].[ext]`,
     context: join("src")
   }
 });
@@ -56,12 +56,21 @@ const baseConfig = {
     filename: "js/index.js"
   },
   resolve: {
+    // require无需后缀
+    extensions: [".js", ".jsx", ".json"],
+    // require搜索路径
     modules: [
       join("src/"),
       join("node_modules"),
       join("src/assets/spritesmith")
     ],
-    extensions: [".js", ".jsx", ".json"]
+    // require路径简化
+		alias: {
+			utils: join('utils'),
+			components:join('src/components'),
+		}
+
+   
   },
   module: {
     rules:[
@@ -81,8 +90,14 @@ const baseConfig = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: getUrlLoader()
+        exclude: /node_modules/,
+        use: getUrlLoader('img')
       },
+      {
+				test: /\.(woff|woff2|eot|ttf)$/,
+				exclude: /node_modules/,
+				use: getUrlLoader('font')
+			},
       {
         test: /\.html$/,
         use: 'html-loader'
