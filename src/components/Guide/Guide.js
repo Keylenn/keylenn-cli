@@ -24,14 +24,14 @@ export default function Guide(props) {
     align-items: center;
     flex-wrap: wrap;
     height: 100vh;
-    font-size: 18px;
+    font-size: 18px; /*no*/
     background-color: #c7dfeb;
   }
   .h2{
     text-align: center;
     color: #fff;
-    font-size: 20px;
-    margin-right: 1em;
+    font-size: 20px; /*no*/
+    margin-right: 20px;
   }
   .a{
     text-decoration: none;
